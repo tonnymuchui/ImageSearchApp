@@ -25,6 +25,7 @@
         android:layout_alignBottom="@id/image_view"
         android:layout_margin="8dp"
         android:drawablePadding="4dp"
+        android:textColorHighlight="@android:color/white"
         android:ellipsize="end"
         android:gravity="center_vertical"
         android:maxLines="1"
