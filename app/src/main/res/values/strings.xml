@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Image Search App</string>
+    <string name="image">Image</string>
+    <string name="retry">Retry</string>
+    <string name="load">Results could not be loaded</string>
+    <string name="result_not_found">Result not found</string>
 </resources>
