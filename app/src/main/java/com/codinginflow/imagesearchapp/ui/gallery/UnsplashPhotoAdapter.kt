@@ -15,28 +15,35 @@ class UnsplashPhotoAdapter :
     PagingDataAdapter<UnsplashPhoto, UnsplashPhotoAdapter.PhotoViewHolder>(PHOTO_COMPARATOR) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoViewHolder {
-        val binding = ItemUnsplashPhotosBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding =
+            ItemUnsplashPhotosBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+
         return PhotoViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: PhotoViewHolder, position: Int) {
         val currentItem = getItem(position)
+
+        if (currentItem != null) {
+            holder.bind(currentItem)
+        }
     }
 
     class PhotoViewHolder(private val binding: ItemUnsplashPhotosBinding) :
         RecyclerView.ViewHolder(binding.root) {
-            fun bind(photo: UnsplashPhoto){
-                binding.apply {
-                    Glide.with(itemView)
-                        .load(photo.urls.regular)
-                        .centerCrop()
-                        .transition(DrawableTransitionOptions.withCrossFade())
-                        .error(R.drawable.ic_error)
-                        .into(imageView)
 
-                    textViewUserName.text = photo.user.username
-                }
+        fun bind(photo: UnsplashPhoto) {
+            binding.apply {
+                Glide.with(itemView)
+                    .load(photo.urls.regular)
+                    .centerCrop()
+                    .transition(DrawableTransitionOptions.withCrossFade())
+                    .error(R.drawable.ic_error)
+                    .into(imageView)
+
+                textViewUserName.text = photo.user.username
             }
+        }
     }
 
     companion object {
@@ -44,10 +51,8 @@ class UnsplashPhotoAdapter :
             override fun areItemsTheSame(oldItem: UnsplashPhoto, newItem: UnsplashPhoto) =
                 oldItem.id == newItem.id
 
-            override fun areContentsTheSame(
-                oldItem: UnsplashPhoto,
-                newItem: UnsplashPhoto
-            ) = oldItem == newItem
+            override fun areContentsTheSame(oldItem: UnsplashPhoto, newItem: UnsplashPhoto) =
+                oldItem == newItem
         }
     }
 }

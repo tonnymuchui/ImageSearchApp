@@ -9,13 +9,15 @@ private const val UNSPLASH_STARTING_PAGE_INDEX = 1
 class UnsplashPagingSource(
     private val unsplashApi: UnsplashApi,
     private val query: String
-): PagingSource<Int, UnsplashPhoto>() {
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, UnsplashPhoto> {
-        val position = params.key?: UNSPLASH_STARTING_PAGE_INDEX
+) : PagingSource<Int, UnsplashPhoto>() {
 
-       return try {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, UnsplashPhoto> {
+        val position = params.key ?: UNSPLASH_STARTING_PAGE_INDEX
+
+        return try {
             val response = unsplashApi.searchPhotos(query, position, params.loadSize)
             val photos = response.results
+
             LoadResult.Page(
                 data = photos,
                 prevKey = if (position == UNSPLASH_STARTING_PAGE_INDEX) null else position - 1,

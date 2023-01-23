@@ -5,8 +5,12 @@ import androidx.paging.PagingConfig
 import androidx.paging.liveData
 import com.codinginflow.imagesearchapp.api.UnsplashApi
 import javax.inject.Inject
+import javax.inject.Singleton
 
+
+@Singleton
 class UnsplashRepository @Inject constructor(private val unsplashApi: UnsplashApi) {
+
     fun getSearchResults(query: String) =
         Pager(
             config = PagingConfig(
@@ -14,6 +18,6 @@ class UnsplashRepository @Inject constructor(private val unsplashApi: UnsplashAp
                 maxSize = 100,
                 enablePlaceholders = false
             ),
-            pagingSourceFactory = {UnsplashPagingSource(unsplashApi, query)}
+            pagingSourceFactory = { UnsplashPagingSource(unsplashApi, query) }
         ).liveData
 }

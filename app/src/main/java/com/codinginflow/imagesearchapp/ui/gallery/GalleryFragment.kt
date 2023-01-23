@@ -9,7 +9,8 @@ import com.codinginflow.imagesearchapp.databinding.FragmentGalleryBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class GalleryFragment: Fragment(R.layout.fragment_gallery) {
+class GalleryFragment : Fragment(R.layout.fragment_gallery) {
+
     private val viewModel by viewModels<GalleryViewModel>()
 
     private var _binding: FragmentGalleryBinding? = null
@@ -17,13 +18,17 @@ class GalleryFragment: Fragment(R.layout.fragment_gallery) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         _binding = FragmentGalleryBinding.bind(view)
+
         val adapter = UnsplashPhotoAdapter()
+
         binding.apply {
             recyclerView.setHasFixedSize(true)
             recyclerView.adapter = adapter
         }
-        viewModel.photos.observe(viewLifecycleOwner){
+
+        viewModel.photos.observe(viewLifecycleOwner) {
             adapter.submitData(viewLifecycleOwner.lifecycle, it)
         }
     }

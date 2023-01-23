@@ -2,7 +2,6 @@ package com.codinginflow.imagesearchapp.data
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
-
 @Parcelize
 data class UnsplashPhoto(
     val id: String,
