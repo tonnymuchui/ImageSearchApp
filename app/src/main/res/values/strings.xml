@@ -6,4 +6,5 @@
     <string name="result_not_found">Result not found</string>
     <string name="tex_retry">Retry</string>
     <string name="txt_load">Results could not be loaded</string>
+    <string name="search">Search</string>
 </resources>
